@@ -29,7 +29,7 @@ Quando você utiliza o Kafka com o Spring Boot, você pode facilmente integrar o
 - **Suporte a Microsserviços:** O modelo de microsserviços se beneficia muito do Kafka para comunicação assíncrona e escalável entre serviços. Com o Spring Boot, é fácil criar produtores e consumidores Kafka como componentes gerenciados.
 - **Arquitetura Distribuída:** Tanto o Kafka quanto o Spring Boot são projetados para ambientes distribuídos e escaláveis. A combinação de ambos permite construir sistemas altamente disponíveis e resilientes.
 
-#### Passos para Iniciar um Projeto Spring Boot com Kafka
+# Passo 1: Iniciar um Projeto Spring Boot com Kafka
 
 1. Acesse o Spring Initializr
    Abra um navegador web e acesse o [Spring Initializr](https://start.spring.io/).
@@ -60,8 +60,54 @@ Quando você utiliza o Kafka com o Spring Boot, você pode facilmente integrar o
 4. Importar o Projeto no IDE
    Extraia o arquivo ZIP baixado e importe o projeto no seu IDE de desenvolvimento preferido (como IntelliJ IDEA, Eclipse, etc.) como um projeto Maven existente.
 
+# Passo 2: Instalando o Docker
+### Tutorial de Instalação do Docker no Linux
 
-# Entendendo o Arquivo docker-compose.yml
+Se você ainda não possui o Docker instalado no seu sistema, siga os passos a seguir
+
+#### 1: Atualize o Índice de Pacotes
+
+Antes de começarmos, é sempre bom garantir que estamos com as informações de pacotes mais recentes:
+
+```bash
+sudo apt update
+```
+
+Isso garante que o sistema tenha acesso às versões mais recentes dos pacotes disponíveis.
+
+#### 2: Instale o Docker
+
+Agora, vamos instalar o Docker utilizando o gerenciador de pacotes \`apt\`:
+
+```bash
+sudo apt install docker.io
+```
+
+Este comando irá baixar e instalar o Docker, além de suas dependências, em seu sistema.
+
+#### 3: Configuração Adicional
+
+Para utilizar o Docker sem precisar de privilégios de superusuário (sudo), adicione seu usuário ao grupo \`docker\`:
+
+```bash
+sudo groupadd docker  # Cria o grupo docker (se ainda não existir)
+sudo usermod -aG docker $USER  # Adiciona seu usuário ao grupo docker
+newgrp docker  # Atualiza as configurações de grupo
+```
+
+Agora você pode executar comandos Docker sem precisar digitar \`sudo\` antes de cada um.
+
+#### Verificando a Instalação
+
+Para confirmar se o Docker foi instalado corretamente e está em execução, execute o seguinte comando:
+
+```bash
+docker ps
+```
+
+Se tudo estiver configurado corretamente, você verá uma lista vazia de contêineres em execução, o que é esperado após uma nova instalação.
+
+# Passo 2.1: Entendendo o Arquivo docker-compose.yml
 
 O arquivo `docker-compose.yml` define e configura dois serviços usando imagens do Docker do Confluent Kafka:
 
@@ -90,7 +136,7 @@ O arquivo `docker-compose.yml` define e configura dois serviços usando imagens 
          - `KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR`: Fator de replicação do tópico de offsets do Kafka.
 
 
-### Tutorial: Configurando e Executando os Serviços
+# Passo 3: Configurando e Executando os Serviços
 
 Vá até o diretório raiz do seu projeto Spring Boot e crie um arquivo `docker-compose.yml` dentro dele.
 
@@ -152,7 +198,7 @@ Isso mostrará os contêineres e seus estados.
 Com esses passos, você configurou e iniciou um ambiente local de Zookeeper e Kafka usando Docker. Agora você pode prosseguir no desenvolvimento da aplicação Spring Boot que se conecte ao Kafka utilizando as configurações fornecidas no `docker-compose.yml`.
 
 
-### Configurando o Kafka no Spring Boot
+# Passo 4: Configurando o Kafka no Spring Boot
 
 Para começar, vamos configurar o Kafka em nossa aplicação Spring Boot. Iniciaremos adicionando as seguintes propriedades ao arquivo application.properties:
 
@@ -162,7 +208,7 @@ spring.kafka.consumer.group-id=meu-id-grupo
 ```
 Aqui, `spring.kafka.bootstrap-servers` especifica o endereço do seu broker Kafka, e `spring.kafka.consumer.group-id` define o ID do grupo de consumidores para sua aplicação.
 
-#### Criando um Produtor Kafka
+# Passo 5: Criando um Produtor Kafka
 
 Para enviar mensagens para o Kafka, precisamos criar um produtor Kafka. Primeiro, crie um novo pacote chamado com.example.kafkaspring.producer e, em seguida, adicione a seguinte classe `KafkaProducerConfig`:
 
@@ -202,7 +248,6 @@ Essa classe KafkaProducerConfig configura a factory de produtores do Kafka e o K
 
 Com esta configuração, você está pronto para começar a enviar e receber mensagens no Kafka usando o Spring Boot. Customize e expanda esta configuração conforme necessário para atender aos requisitos da sua aplicação.
 
-
 A seguir, crie uma classe MessageProducer no mesmo pacote para enviar mensagens para um tópico do Kafka:
 
 ```java
@@ -234,6 +279,7 @@ Certifique-se de ajustar os parâmetros conforme necessário, como o tipo de cha
 
 Agora, você tem um produtor Kafka funcional que pode enviar mensagens para um tópico do Kafka especificado. Você pode integrar este produtor em outras partes da sua aplicação Spring Boot para enviar mensagens de forma assíncrona para o Kafka.
 
+# Passo 6: Criando um Consumidor Kafka
 Agora, vamos criar um consumidor Kafka para receber mensagens do tópico do Kafka. Crie um novo pacote chamado com.example.kafkaspring.consumer e adicione a seguinte classe `KafkaConsumerConfig`:
 
 ```java
@@ -302,6 +348,7 @@ public class MessageConsumer {
 ```
 Nesta classe MessageConsumer, usamos a anotação @KafkaListener para especificar que o método listen será um ouvinte de mensagens do tópico "my-topic" para o grupo de consumidores "meu-id-grupo". Quando uma mensagem é recebida neste tópico, o método listen é invocado e o conteúdo da mensagem é impresso no console.
 
+# Passo 7:  Testando a Aplicação
 Agora, vamos testar nossa integração com o Kafka enviando e recebendo mensagens. Criaremos um novo controlador REST no pacote com.example.kafkaspring.controller:
 
 ```java
