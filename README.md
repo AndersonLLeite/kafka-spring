@@ -1,25 +1,25 @@
 # kafka-spring
-O que é Apache Kafka?
+### O que é Apache Kafka?
 Apache Kafka é uma plataforma de streaming distribuída que é utilizada para construir pipelines de dados em tempo real e aplicações de streaming. Ele é especialmente projetado para lidar com grandes volumes de dados de forma eficiente e confiável. O Kafka é conhecido por sua alta capacidade de escalabilidade e tolerância a falhas, sendo amplamente adotado por empresas para casos de uso como mensageria, processamento de streams, armazenamento de logs e integração entre sistemas.
 
-Principais conceitos do Kafka incluem:
+#### Principais conceitos do Kafka incluem:
 
-- Tópicos (Topics): Canais de mensagens onde os dados são publicados.
-- Produtores (Producers): Aplicativos que publicam dados em tópicos.
-- Consumidores (Consumers): Aplicativos que se inscrevem nos tópicos e consomem os dados.
-- Brokers: Servidores Kafka que armazenam os dados e coordenam a comunicação entre produtores e consumidores.
-- Partições (Partitions): Cada tópico é dividido em partições para distribuir dados e paralelizar o processamento.
+- **Tópicos (Topics)**: Canais de mensagens onde os dados são publicados.
+- **Produtores (Producers)**: Aplicativos que publicam dados em tópicos.
+- **Consumidores (Consumers)**: Aplicativos que se inscrevem nos tópicos e consomem os dados.
+- **Brokers**: Servidores Kafka que armazenam os dados e coordenam a comunicação entre produtores e consumidores.
+- **Partições (Partitions)**: Cada tópico é dividido em partições para distribuir dados e paralelizar o processamento.
 
-O que é Spring Boot?
+#### O que é Spring Boot?
 Spring Boot é um projeto da família Spring Framework que simplifica o desenvolvimento de aplicações Java, fornecendo um ambiente pré-configurado e pronto para uso. Ele é baseado no conceito de "opinião sobre configurações", o que significa que muitas decisões de configuração são tomadas pelo próprio Spring Boot, reduzindo a necessidade de configuração manual. O Spring Boot é ideal para desenvolvimento ágil e produção rápida de aplicativos Java.
 
-Principais características do Spring Boot:
+#### Principais características do Spring Boot:
 
-- Configuração automática (Auto-Configuration): O Spring Boot configura automaticamente os componentes com base nas dependências encontradas no classpath.
-- Embedded Containers: Suporte embutido para contêineres web como Tomcat, Jetty ou Undertow.
-- Spring Boot Starter: Pacotes que simplificam a configuração de dependências para diferentes tecnologias, como Spring Data, Spring Security, etc.
+- **Configuração automática (Auto-Configuration)**: O Spring Boot configura automaticamente os componentes com base nas dependências encontradas no classpath.
+- **Embedded Containers**: Suporte embutido para contêineres web como Tomcat, Jetty ou Undertow.
+- **Spring Boot Starter**: Pacotes que simplificam a configuração de dependências para diferentes tecnologias, como Spring Data, Spring Security, etc.
 
-Kafka com Spring Boot
+#### Kafka com Spring Boot
 Quando você utiliza o Kafka com o Spring Boot, você pode facilmente integrar o Kafka em suas aplicações Java, aproveitando as facilidades oferecidas pelo Spring Boot em termos de configuração e desenvolvimento rápido.
 
 ### Aplicações e Importância do Kafka no Spring Boot
@@ -234,7 +234,7 @@ Certifique-se de ajustar os parâmetros conforme necessário, como o tipo de cha
 
 Agora, você tem um produtor Kafka funcional que pode enviar mensagens para um tópico do Kafka especificado. Você pode integrar este produtor em outras partes da sua aplicação Spring Boot para enviar mensagens de forma assíncrona para o Kafka.
 
-Agora, vamos criar um consumidor Kafka para receber mensagens do tópico do Kafka. Crie um novo pacote chamado com.example.kafka.consumer e adicione a seguinte classe `KafkaConsumerConfig`:
+Agora, vamos criar um consumidor Kafka para receber mensagens do tópico do Kafka. Crie um novo pacote chamado com.example.kafkaspring.consumer e adicione a seguinte classe `KafkaConsumerConfig`:
 
 ```java
 package com.example.kafkaspring.consumer;
@@ -299,7 +299,7 @@ public class MessageConsumer {
     }
 
 }
-``
+```
 Nesta classe MessageConsumer, usamos a anotação @KafkaListener para especificar que o método listen será um ouvinte de mensagens do tópico "my-topic" para o grupo de consumidores "meu-id-grupo". Quando uma mensagem é recebida neste tópico, o método listen é invocado e o conteúdo da mensagem é impresso no console.
 
 Agora, vamos testar nossa integração com o Kafka enviando e recebendo mensagens. Criaremos um novo controlador REST no pacote com.example.kafkaspring.controller:
