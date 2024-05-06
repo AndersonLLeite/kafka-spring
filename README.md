@@ -387,3 +387,5 @@ Agora, execute sua aplicação Spring Boot e utilize uma ferramenta como Postman
 Certifique-se de ter o Kafka em execução.
 
 Com isso, você testou com sucesso a integração do Kafka com o Spring Boot, enviando e recebendo mensagens por meio de uma API REST. Personalize e expanda esta implementação conforme necessário para atender aos requisitos da sua aplicação.
+
+Todo o código e estrutura descritos no tutorial acima, estão presentes nesse repositório. 
