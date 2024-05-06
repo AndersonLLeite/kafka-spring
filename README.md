@@ -1,4 +1,4 @@
-# Tutorial básico de implementação do Apache Kafka com Spring Boot
+# Guia de implementação do Apache Kafka com Spring Boot
 ### O que é Apache Kafka?
 Apache Kafka é uma plataforma de streaming distribuída que é utilizada para construir pipelines de dados em tempo real e aplicações de streaming. Ele é especialmente projetado para lidar com grandes volumes de dados de forma eficiente e confiável. O Kafka é conhecido por sua alta capacidade de escalabilidade e tolerância a falhas, sendo amplamente adotado por empresas para casos de uso como mensageria, processamento de streams, armazenamento de logs e integração entre sistemas.
 
