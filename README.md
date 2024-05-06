@@ -29,7 +29,7 @@ Quando você utiliza o Kafka com o Spring Boot, você pode facilmente integrar o
 - **Suporte a Microsserviços:** O modelo de microsserviços se beneficia muito do Kafka para comunicação assíncrona e escalável entre serviços. Com o Spring Boot, é fácil criar produtores e consumidores Kafka como componentes gerenciados.
 - **Arquitetura Distribuída:** Tanto o Kafka quanto o Spring Boot são projetados para ambientes distribuídos e escaláveis. A combinação de ambos permite construir sistemas altamente disponíveis e resilientes.
 
-Passos para Iniciar um Projeto Spring Boot com Kafka
+#### Passos para Iniciar um Projeto Spring Boot com Kafka
 
 1. Acesse o Spring Initializr
    Abra um navegador web e acesse o [Spring Initializr](https://start.spring.io/).
@@ -164,7 +164,7 @@ Aqui, `spring.kafka.bootstrap-servers` especifica o endereço do seu broker Kafk
 
 #### Criando um Produtor Kafka
 
-Para enviar mensagens para o Kafka, precisamos criar um produtor Kafka. Primeiro, crie um novo pacote chamado com.example.kafka.producer e, em seguida, adicione a seguinte classe `KafkaProducerConfig`:
+Para enviar mensagens para o Kafka, precisamos criar um produtor Kafka. Primeiro, crie um novo pacote chamado com.example.kafkaspring.producer e, em seguida, adicione a seguinte classe `KafkaProducerConfig`:
 
 ```java
 package com.example.kafkaspring.producer;
@@ -283,8 +283,7 @@ Com esta configuração, estamos prontos para criar e configurar consumidores qu
 
 Vamos criar uma classe MessageConsumer no mesmo pacote para ouvir mensagens do tópico do Kafka:
 
-java
-Copy code
+```java
 package com.example.kafka.consumer;
 
 import org.springframework.kafka.annotation.KafkaListener;
@@ -300,9 +299,10 @@ public class MessageConsumer {
     }
 
 }
+``
 Nesta classe MessageConsumer, usamos a anotação @KafkaListener para especificar que o método listen será um ouvinte de mensagens do tópico "my-topic" para o grupo de consumidores "meu-id-grupo". Quando uma mensagem é recebida neste tópico, o método listen é invocado e o conteúdo da mensagem é impresso no console.
 
-Agora, vamos testar nossa integração com o Kafka enviando e recebendo mensagens. Criaremos um novo controlador REST no pacote com.example.kafka.controller:
+Agora, vamos testar nossa integração com o Kafka enviando e recebendo mensagens. Criaremos um novo controlador REST no pacote com.example.kafkaspring.controller:
 
 ```java
 package com.example.kafkaspring.controller;
